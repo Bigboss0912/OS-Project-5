@@ -74,6 +74,21 @@ public class Main {
 
         //FIFO Page replacement Algorithm
 
+        //LRU Page replacement Algorithm
+
+        //MIN Page replacement Algorithm
+
+        //RAND Page replacement Algorithm
+
+        //Cache Hits Rates
+        System.out.println("Cache Hit Rates: ");
+        System.out.println("FIFO : ");
+        System.out.println("LRU  : ");
+        System.out.println("MIN  : ");
+        System.out.println("RAND : ");
+        System.out.println("Best: ");
+        System.out.println("Worst: ");
+
 
     }
 
