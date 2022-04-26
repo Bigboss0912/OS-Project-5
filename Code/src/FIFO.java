@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class FIFO {
-    ArrayList<String> refString = new ArrayList<String>();
+    List<String> refString = new ArrayList<String>();
     ArrayList<String> cache = new ArrayList<String>();
     int hitCount;
     int missCount;
@@ -9,7 +10,7 @@ public class FIFO {
     String retString;
     String page;
     int slotSize;
-    public void FIFO(ArrayList refString, int slotSize) {
+    public void FIFO(List<String> refString, int slotSize) {
         this.refString.addAll(refString);
         this.slotSize = slotSize;
         this.cache = cache;
