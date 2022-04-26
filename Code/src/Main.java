@@ -77,7 +77,7 @@ public class Main {
         System.out.println("\nRef Str: " + ref_str);
 
         for (int j = 0; j < final_ref_list.size(); j++) {
-            Pages page_obj = new Pages(final_ref_list.get(j));
+            Pages page_obj = new Pages(final_ref_list.get(j), j);
             pages_list.add(page_obj);
         }
 

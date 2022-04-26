@@ -4,6 +4,7 @@ import java.util.List;
 
 public class FIFO {
     List<Pages> refString = new ArrayList<Pages>();
+    List<Pages> refString2 = new ArrayList<Pages>();
     ArrayList<Pages> cache = new ArrayList<Pages>();
     ArrayList<Integer> slot_list = new ArrayList<Integer>();
     int hitCount;
@@ -18,6 +19,7 @@ public class FIFO {
     FIFO(List<Pages> refString, int slotSize) {
         this.refString.addAll(refString);
         this.refStringLen = this.refString.size();
+        this.refString2.addAll(refString);
         this.slotSize = slotSize;
         this.cache = cache;
         this.page = page;
@@ -41,6 +43,7 @@ public class FIFO {
 
         for (int i = 0; i < refString.size(); i++) {
             refString.get(i).setSlotNum(slot_list.get(i));
+            refString2.get(i).setSlotNum(slot_list.get(i));
         }
 
         for (Pages p:
@@ -65,8 +68,7 @@ public class FIFO {
             }
 
                 if (this.isContained) {
-
-                    System.out.println("+ " + this.pageIndex);
+                    
                     this.hitCount++;
                 } else {
                     this.missCount++;
@@ -96,14 +98,25 @@ public class FIFO {
 
         for (int i = 0; i < this.slotSize; i++) {
             for(int j = 0; j < this.refStringLen; j++){
-                setup[i][j] = "Z";
+                // setup[i][j] = "Z";
+                for (Pages p: refString2) {
+                    if (p.slotNum == i) {
+                        if(p.getPageIndex() == j) {
+                            setup[i][j] = p.getRef_page();
+                        }
+                    }
+                }
             }
         }
 
         System.out.println(Arrays.deepToString(setup));
         for (String [] s: setup ) {
             for (String c: s) {
-                System.out.print(" " + c);
+                if(c == null) {
+                    System.out.print("  ");
+                }else {
+                    System.out.print("  " + c);
+                }
             }
             System.out.println();
         }
