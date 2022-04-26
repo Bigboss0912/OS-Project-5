@@ -8,12 +8,15 @@ public class Main {
         ArrayList<Character> ref_rand_list = new ArrayList<>(); // for unique  page configuration
         List<String> final_ref_list = new ArrayList<>(); // final ref list
         ArrayList<Pages> pages_list = new ArrayList<>();
+        ArrayList<Double> rates_collections = new ArrayList<>();
         Random rand = new Random(61);
         char page;
         int count = 0;
         int page_len = 0;
         int uniq_page = 0;
         int slots = 0;
+        String max_algor = "";
+        String min_algor = "";
         boolean page_len_catch = false;
         boolean uniq_page_catch = false;
         boolean slots_catch = false;
@@ -82,21 +85,60 @@ public class Main {
         FIFO fifoAlgo = new FIFO(pages_list, slots) ;
         fifoAlgo.runSchedule();
 
-
         //LRU Page replacement Algorithm
-
+        LRU LRUAlgo = new LRU(pages_list,slots);
+        LRUAlgo.runSchedule();
         //MIN Page replacement Algorithm
-
+        MIN MINAlgo = new MIN(pages_list,slots);
+        MINAlgo.runSchedule();
         //RAND Page replacement Algorithm
+        RAND RANDAlgo = new RAND(pages_list,slots);
+        RANDAlgo.runSchedule();
+
+        //Best or Worse calculation
+        rates_collections.add((double)fifoAlgo.getHitCount()/page_len); // index 0
+        rates_collections.add((double)LRUAlgo.getHitCount()/page_len); // index 1
+        rates_collections.add((double)MINAlgo.getHitCount()/page_len); //index 2
+        rates_collections.add((double)RANDAlgo.getHitCount()/page_len); //index 3
+
+        int max_index = rates_collections.indexOf(Collections.max(rates_collections)); // Worse algorithm
+
+        if (max_index == 0){
+            max_algor = "FIFO";
+        }
+        if (max_index == 1){
+            max_algor = "LRU";
+        }
+        if (max_index == 2){
+            max_algor = "MIN";
+        }
+        if (max_index == 3){
+            max_algor = "RAND";
+        }
+        int min_index = rates_collections.indexOf(Collections.min(rates_collections)); // Best algorithm
+
+        if (min_index == 0){
+            min_algor = "FIFO";
+        }
+        if (min_index == 1){
+            min_algor = "LRU";
+        }
+        if (min_index == 2){
+            min_algor = "MIN";
+        }
+        if (min_index == 3){
+            min_algor = "RAND";
+        }
+
 
         //Cache Hits Rates
         System.out.println("Cache Hit Rates: ");
-        System.out.printf("FIFO : ", fifoAlgo.getHitCount(), " of ", page_len, " = ", (double)fifoAlgo.getHitCount()/page_len);
-        System.out.println("\nLRU  : ");
-        System.out.println("\nMIN  : ");
-        System.out.println("\nRAND : ");
-        System.out.println("\nBest: ");
-        System.out.println("\nWorst: ");
+        System.out.printf("FIFO : %2s of %2s = %.2f", fifoAlgo.getHitCount(), page_len, (double)fifoAlgo.getHitCount()/page_len);
+        System.out.printf("\nLRU  : %2s of %2s = %.2f", LRUAlgo.getHitCount(), page_len, (double)LRUAlgo.getHitCount()/page_len);
+        System.out.printf("\nMIN  : %2s of %2s = %.2f", MINAlgo.getHitCount(), page_len, (double)MINAlgo.getHitCount()/page_len);
+        System.out.printf("\nRAND : %2s of %2s = %.2f", RANDAlgo.getHitCount(), page_len, (double)RANDAlgo.getHitCount()/page_len);
+        System.out.printf("\nBest: " + min_algor );
+        System.out.printf("\nWorst: " + max_algor);
 
 
     }
