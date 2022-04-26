@@ -62,6 +62,7 @@ public class FIFO {
 
                 if(p.getRef_page().equals(this.page.getRef_page())) {
                     this.isContained = true;
+                    this.refString2.get(pageIndex).setSlotNum(p.getSlotNum());
                     //this.pageIndex = this.cache.indexOf(p);
                     break;
                 }
@@ -75,6 +76,7 @@ public class FIFO {
                     this.missCount++;
                     if (this.cache.size() > 0 && this.cache.size() == this.slotSize) {
                         System.out.println(this.cache.get(0).getRef_page() + " Removed " + this.page.getSlotNum());
+                        this.refString2.get(pageIndex).setSlotNum(this.cache.get(0).getSlotNum());
                         this.cache.remove(0);
                         this.cache.add(this.page);
                         System.out.println(this.page.getRef_page() + " Added to the cache " + this.page.getSlotNum());
