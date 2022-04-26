@@ -84,16 +84,20 @@ public class Main {
         //FIFO Page replacement Algorithm
         FIFO fifoAlgo = new FIFO(pages_list, slots) ;
         fifoAlgo.runSchedule();
+        fifoAlgo.setup();
 
         //LRU Page replacement Algorithm
         LRU LRUAlgo = new LRU(pages_list,slots);
-        LRUAlgo.runSchedule();
+        //LRUAlgo.runSchedule();
+
         //MIN Page replacement Algorithm
         MIN MINAlgo = new MIN(pages_list,slots);
-        MINAlgo.runSchedule();
+        //MINAlgo.runSchedule();
+
+
         //RAND Page replacement Algorithm
         RAND RANDAlgo = new RAND(pages_list,slots);
-        RANDAlgo.runSchedule();
+        //RANDAlgo.runSchedule();
 
         //Best or Worse calculation
         rates_collections.add((double)fifoAlgo.getHitCount()/page_len); // index 0

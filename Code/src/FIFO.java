@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FIFO {
@@ -86,6 +87,22 @@ public class FIFO {
                 }
             System.out.println();
         }
+    }
+
+
+    public void setup(){
+        String [][] setup = new String [slotSize][refString.size()];
+
+        for (int i = 0; i < slotSize; i++) {
+            for(int j = 0; j < refString.size(); j++){
+                setup[i][j] = "Z";
+            }
+
+        }
+
+        System.out.println(Arrays.deepToString(setup));
+
+
     }
 
     public String getRetString() {
