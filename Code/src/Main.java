@@ -7,7 +7,8 @@ public class Main {
         String ref_str = "";
         ArrayList<Character> ref_rand_list = new ArrayList<>(); // for unique  page configuration
         List<String> final_ref_list = new ArrayList<>(); // final ref list
-        Random rand = new Random();
+        ArrayList<Pages> pages_list = new ArrayList<>();
+        Random rand = new Random(61);
         char page;
         int count = 0;
         int page_len = 0;
@@ -63,7 +64,7 @@ public class Main {
         }
 
         count = uniq_page;
-        for (int i = 0; i < ref_rand_list.size(); i++) {
+        for (int i = 0; i < page_len-uniq_page; i++) {
             if (count < page_len) {
                 ref_str += ref_rand_list.get(rand.nextInt(ref_rand_list.size())) + " ";
             }
@@ -72,9 +73,15 @@ public class Main {
         final_ref_list = Arrays.asList(ref_str.split(" "));
         System.out.println("\nRef Str: " + ref_str);
 
+        for (int j = 0; j < final_ref_list.size(); j++) {
+            Pages page_obj = new Pages(final_ref_list.get(j));
+            pages_list.add(page_obj);
+        }
+
         //FIFO Page replacement Algorithm
-        FIFO fifoAlgo = new FIFO(final_ref_list, slots);
+        FIFO fifoAlgo = new FIFO(pages_list, slots) ;
         fifoAlgo.runSchedule();
+
 
         //LRU Page replacement Algorithm
 
