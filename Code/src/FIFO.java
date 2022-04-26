@@ -46,13 +46,6 @@ public class FIFO {
             refString2.get(i).setSlotNum(slot_list.get(i));
         }
 
-        for (Pages p:
-             refString) {
-            System.out.print(" " + p.slotNum);
-        }
-
-        System.out.println();
-
         this.pageIndex = 0;
         while (!refString.isEmpty()) {
                 this.page = this.refString.remove(0);
@@ -75,33 +68,28 @@ public class FIFO {
                 } else {
                     this.missCount++;
                     if (this.cache.size() > 0 && this.cache.size() == this.slotSize) {
-                        System.out.println(this.cache.get(0).getRef_page() + " Removed " + this.page.getSlotNum());
                         this.refString2.get(pageIndex).setSlotNum(this.cache.get(0).getSlotNum());
                         this.cache.remove(0);
                         this.cache.add(this.page);
-                        System.out.println(this.page.getRef_page() + " Added to the cache " + this.page.getSlotNum());
                     } else {
                         this.cache.add(this.page);
-                        System.out.println(this.page.getRef_page() + " Added to the cache " + this.page.getSlotNum());
                     }
                 }
 
-            System.out.println();
-
-                for (Pages p :this.refString ) {
-                System.out.print(" " + p.getRef_page() + " ");
-                }
-            System.out.println();
                 this.pageIndex++;
         }
     }
 
 
     public void setup(){
-        String [][] setup = new String [slotSize][this.refStringLen];
+        String [][] setup = new String [this.slotSize][this.refStringLen];
+
+//        for (int m = 0; m < this.slotSize; m++) {
+//            setup[m][0] = "FIFO";
+//        }
 
         for (int i = 0; i < this.slotSize; i++) {
-            for(int j = 0; j < this.refStringLen; j++){
+            for(int j = 0; j < this.refStringLen+1; j++){
                 // setup[i][j] = "Z";
                 for (Pages p: refString2) {
                     if (p.slotNum == i) {
@@ -117,19 +105,19 @@ public class FIFO {
             }
         }
 
-        System.out.println(Arrays.deepToString(setup));
         for (String [] s: setup ) {
+            System.out.print("FIFO");
             for (String c: s) {
                 if(c == null) {
                     System.out.print("  ");
-                }else {
+                } else {
                     System.out.print("  " + c);
                 }
             }
             System.out.println();
         }
 
-        System.out.println("After For Loop");
+        System.out.println();
 
 
     }
