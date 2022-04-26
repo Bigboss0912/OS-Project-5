@@ -4,11 +4,13 @@ public class Pages {
     Integer slotNum;
 
     int pageIndex;
+    boolean isHit;
 
 
     Pages(String page, int pageIndex){
         this.ref_page = page;
         this.pageIndex = pageIndex;
+        this.isHit = false;
     }
 
     public void setSlotNum(Integer slotNum) {
@@ -27,7 +29,15 @@ public class Pages {
         return pageIndex;
     }
 
+    public boolean getHit() {
+        return this.isHit;
+    }
+
     public void setPageIndex(int pageIndex) {
         this.pageIndex = pageIndex;
+    }
+
+    public void setHit(boolean hit) {
+        isHit = hit;
     }
 }

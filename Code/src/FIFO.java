@@ -53,6 +53,7 @@ public class FIFO {
 
         System.out.println();
 
+        this.pageIndex = 0;
         while (!refString.isEmpty()) {
                 this.page = this.refString.remove(0);
                 this.isContained = false;
@@ -61,14 +62,14 @@ public class FIFO {
 
                 if(p.getRef_page().equals(this.page.getRef_page())) {
                     this.isContained = true;
-                    this.pageIndex = this.cache.indexOf(p);
+                    //this.pageIndex = this.cache.indexOf(p);
                     break;
                 }
 
             }
 
                 if (this.isContained) {
-                    
+                    this.refString2.get(this.pageIndex).setHit(true);
                     this.hitCount++;
                 } else {
                     this.missCount++;
@@ -89,6 +90,7 @@ public class FIFO {
                 System.out.print(" " + p.getRef_page() + " ");
                 }
             System.out.println();
+                this.pageIndex++;
         }
     }
 
@@ -102,7 +104,11 @@ public class FIFO {
                 for (Pages p: refString2) {
                     if (p.slotNum == i) {
                         if(p.getPageIndex() == j) {
-                            setup[i][j] = p.getRef_page();
+                            if (p.getHit()) {
+                                setup[i][j] = "+";
+                            } else {
+                                setup[i][j] = p.getRef_page();
+                            }
                         }
                     }
                 }
