@@ -12,15 +12,16 @@ public class FIFO {
     String retString;
     Pages page;
     int slotSize;
+    int refStringLen;
     boolean isContained;
 
     FIFO(List<Pages> refString, int slotSize) {
         this.refString.addAll(refString);
+        this.refStringLen = this.refString.size();
         this.slotSize = slotSize;
         this.cache = cache;
         this.page = page;
         this.pageIndex = pageIndex;
-
     }
 
     public int getHitCount() {
@@ -91,16 +92,23 @@ public class FIFO {
 
 
     public void setup(){
-        String [][] setup = new String [slotSize][refString.size()];
+        String [][] setup = new String [slotSize][this.refStringLen];
 
-        for (int i = 0; i < slotSize; i++) {
-            for(int j = 0; j < refString.size(); j++){
+        for (int i = 0; i < this.slotSize; i++) {
+            for(int j = 0; j < this.refStringLen; j++){
                 setup[i][j] = "Z";
             }
-
         }
 
         System.out.println(Arrays.deepToString(setup));
+        for (String [] s: setup ) {
+            for (String c: s) {
+                System.out.print(" " + c);
+            }
+            System.out.println();
+        }
+
+        System.out.println("After For Loop");
 
 
     }
