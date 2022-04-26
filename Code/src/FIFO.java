@@ -18,6 +18,14 @@ public class FIFO {
         this.pageIndex = pageIndex;
     }
 
+    public int getHitCount() {
+        return hitCount;
+    }
+
+    public int getMissCount() {
+        return missCount;
+    }
+
     public void runSchedule() {
         while (!refString.isEmpty()) {
                 this.page = this.refString.remove(0);
