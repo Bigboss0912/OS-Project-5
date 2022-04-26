@@ -91,12 +91,12 @@ public class Main {
 
         //Cache Hits Rates
         System.out.println("Cache Hit Rates: ");
-        System.out.println("FIFO : ");
-        System.out.println("LRU  : ");
-        System.out.println("MIN  : ");
-        System.out.println("RAND : ");
-        System.out.println("Best: ");
-        System.out.println("Worst: ");
+        System.out.printf("FIFO : ", fifoAlgo.getHitCount(), " of ", page_len, " = ", (double)fifoAlgo.getHitCount()/page_len);
+        System.out.println("\nLRU  : ");
+        System.out.println("\nMIN  : ");
+        System.out.println("\nRAND : ");
+        System.out.println("\nBest: ");
+        System.out.println("\nWorst: ");
 
 
     }
