@@ -73,7 +73,8 @@ public class Main {
         System.out.println("\nRef Str: " + ref_str);
 
         //FIFO Page replacement Algorithm
-<<<<<<< Updated upstream
+        FIFO fifoAlgo = new FIFO(final_ref_list, slots);
+        fifoAlgo.runSchedule();
 
         //LRU Page replacement Algorithm
 
@@ -90,9 +91,6 @@ public class Main {
         System.out.println("Best: ");
         System.out.println("Worst: ");
 
-=======
-        FIFO fifoAlgo = new FIFO(final_ref_list, slots);
->>>>>>> Stashed changes
 
     }
 

@@ -10,7 +10,7 @@ public class FIFO {
     String retString;
     String page;
     int slotSize;
-    public void FIFO(List<String> refString, int slotSize) {
+    FIFO(List<String> refString, int slotSize) {
         this.refString.addAll(refString);
         this.slotSize = slotSize;
         this.cache = cache;
@@ -20,7 +20,6 @@ public class FIFO {
 
     public void runSchedule() {
         while (!refString.isEmpty()) {
-            if (this.cache.size() < this.slotSize) {
                 this.page = this.refString.remove(0);
                 if (this.cache.contains(this.page)) {
                     this.pageIndex = this.cache.indexOf(this.page);
@@ -37,7 +36,6 @@ public class FIFO {
                         System.out.println(this.page + " Added to the cache");
                     }
                 }
-            }
             System.out.println(this.refString.toString());
         }
     }
