@@ -23,18 +23,21 @@ public class FIFO {
                 this.page = this.refString.remove(0);
                 if (this.cache.contains(this.page)) {
                     this.pageIndex = this.cache.indexOf(this.page);
+                    System.out.println("+");
                     this.hitCount++;
                 } else {
                     this.missCount++;
                     if (this.cache.size() > 0 && this.cache.size() == this.slotSize) {
-                        this.cache.remove(0);
+                        System.out.println(this.cache.remove(0) + " Removed");
                         this.cache.add(this.page);
+                        System.out.println(this.page + " Added to the cache");
                     } else {
                         this.cache.add(this.page);
+                        System.out.println(this.page + " Added to the cache");
                     }
                 }
-                this.cache.add(this.refString.remove(0));
             }
+            System.out.println(this.refString.toString());
         }
     }
 
