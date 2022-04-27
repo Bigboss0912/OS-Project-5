@@ -48,6 +48,7 @@ public class LRU {
                 if(p.getRef_page().equals(this.page.getRef_page())) {
                     this.isContained = true;
                     this.refString2.get(pageIndex).setSlotNum(p.getSlotNum());
+                    this.page.setSlotNum(p.getSlotNum());
                     //this.pageIndex = this.cache.indexOf(p);
                     break;
                 }
@@ -56,6 +57,14 @@ public class LRU {
 
             if (this.isContained) {
                 this.refString2.get(this.pageIndex).setHit(true);
+                int tempIndex = 0;
+                for (int i = 0; i < this.cache.size(); i++) {
+                    if (this.cache.get(i).getRef_page().equals(this.page.getRef_page())){
+                        tempIndex = i;
+                    }
+                }
+                Pages tempPage = this.cache.remove(tempIndex);
+                this.cache.add(tempPage);
                 this.hitCount++;
             } else {
                 this.missCount++;

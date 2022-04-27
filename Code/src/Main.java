@@ -7,7 +7,10 @@ public class Main {
         String ref_str = "";
         ArrayList<Character> ref_rand_list = new ArrayList<>(); // for unique  page configuration
         List<String> final_ref_list = new ArrayList<>(); // final ref list
-        ArrayList<Pages> pages_list = new ArrayList<>();
+        ArrayList<Pages> pages_list_FIFO = new ArrayList<>();
+        ArrayList<Pages> pages_list_LRU = new ArrayList<>();
+        ArrayList<Pages> pages_list_MIN = new ArrayList<>();
+        ArrayList<Pages> pages_list_RAND = new ArrayList<>();
         ArrayList<Double> rates_collections = new ArrayList<>();
         Random rand = new Random(61);
         char page;
@@ -78,27 +81,43 @@ public class Main {
 
         for (int j = 0; j < final_ref_list.size(); j++) {
             Pages page_obj = new Pages(final_ref_list.get(j), j);
-            pages_list.add(page_obj);
+            pages_list_FIFO.add(page_obj);
+        }
+
+        for (int j = 0; j < final_ref_list.size(); j++) {
+            Pages page_obj = new Pages(final_ref_list.get(j), j);
+            pages_list_LRU.add(page_obj);
+        }
+
+        for (int j = 0; j < final_ref_list.size(); j++) {
+            Pages page_obj = new Pages(final_ref_list.get(j), j);
+            pages_list_MIN.add(page_obj);
+        }
+
+        for (int j = 0; j < final_ref_list.size(); j++) {
+            Pages page_obj = new Pages(final_ref_list.get(j), j);
+            pages_list_RAND.add(page_obj);
         }
 
         //FIFO Page replacement Algorithm
-        FIFO fifoAlgo = new FIFO(pages_list, slots) ;
+        FIFO fifoAlgo = new FIFO(pages_list_FIFO, slots) ;
         fifoAlgo.runSchedule();
         fifoAlgo.setup();
 
         //LRU Page replacement Algorithm
-        LRU LRUAlgo = new LRU(pages_list,slots);
+        LRU LRUAlgo = new LRU(pages_list_LRU,slots);
         LRUAlgo.runSchedule();
         LRUAlgo.setup();
 
         //MIN Page replacement Algorithm
-        MIN MINAlgo = new MIN(pages_list,slots);
+        MIN MINAlgo = new MIN(pages_list_MIN,slots);
         MINAlgo.runSchedule();
         MINAlgo.setup();
 
 
         //RAND Page replacement Algorithm
-        RAND RANDAlgo = new RAND(pages_list,slots);
+        System.out.println("\nRef Str: " + ref_str);
+        RAND RANDAlgo = new RAND(pages_list_RAND,slots);
         RANDAlgo.runSchedule();
         RANDAlgo.setup();
 

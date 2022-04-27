@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.random.*;
 
 public class RAND {
     List<Pages> refString = new ArrayList<Pages>();
@@ -14,12 +16,14 @@ public class RAND {
     int slotSize;
     int refStringLen;
     boolean isContained;
+    Random randNum = new Random();
 
     RAND(List<Pages> refString, int slotSize) {
         this.refString.addAll(refString);
         this.refStringLen = this.refString.size();
         this.refString2.addAll(refString);
         this.slotSize = slotSize;
+        this.randNum = randNum;
     }
 
     public int getHitCount() {
@@ -61,8 +65,9 @@ public class RAND {
             } else {
                 this.missCount++;
                 if (this.cache.size() > 0 && this.cache.size() == this.slotSize) {
-                    this.refString2.get(pageIndex).setSlotNum(this.cache.get(0).getSlotNum());
-                    this.cache.remove(0);
+                    int randIndex = this.randNum.nextInt(this.cache.size());
+                    this.refString2.get(pageIndex).setSlotNum(this.cache.get(randIndex).getSlotNum());
+                    this.cache.remove(randIndex);
                     this.cache.add(this.page);
                 } else {
                     this.cache.add(this.page);
