@@ -88,16 +88,19 @@ public class Main {
 
         //LRU Page replacement Algorithm
         LRU LRUAlgo = new LRU(pages_list,slots);
-        //LRUAlgo.runSchedule();
+        LRUAlgo.runSchedule();
+        LRUAlgo.setup();
 
         //MIN Page replacement Algorithm
         MIN MINAlgo = new MIN(pages_list,slots);
-        //MINAlgo.runSchedule();
+        MINAlgo.runSchedule();
+        MINAlgo.setup();
 
 
         //RAND Page replacement Algorithm
         RAND RANDAlgo = new RAND(pages_list,slots);
-        //RANDAlgo.runSchedule();
+        RANDAlgo.runSchedule();
+        RANDAlgo.setup();
 
         //Best or Worse calculation
         rates_collections.add((double)fifoAlgo.getHitCount()/page_len); // index 0
@@ -143,7 +146,6 @@ public class Main {
         System.out.printf("\nRAND : %2s of %2s = %.2f", RANDAlgo.getHitCount(), page_len, (double)RANDAlgo.getHitCount()/page_len);
         System.out.printf("\nBest: " + min_algor );
         System.out.printf("\nWorst: " + max_algor);
-
 
     }
 

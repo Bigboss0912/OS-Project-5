@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FIFO {
@@ -21,17 +20,10 @@ public class FIFO {
         this.refStringLen = this.refString.size();
         this.refString2.addAll(refString);
         this.slotSize = slotSize;
-        this.cache = cache;
-        this.page = page;
-        this.pageIndex = pageIndex;
     }
 
     public int getHitCount() {
         return hitCount;
-    }
-
-    public int getMissCount() {
-        return missCount;
     }
 
     public void runSchedule() {
@@ -52,7 +44,6 @@ public class FIFO {
                 this.isContained = false;
 
             for (Pages p: this.cache) {
-
                 if(p.getRef_page().equals(this.page.getRef_page())) {
                     this.isContained = true;
                     this.refString2.get(pageIndex).setSlotNum(p.getSlotNum());
@@ -104,20 +95,21 @@ public class FIFO {
                 }
             }
         }
-
+        int counter = 1;
         for (String [] s: setup ) {
-            System.out.print("FIFO");
+            System.out.print("FIFO  "+ counter + ":");
             for (String c: s) {
                 if(c == null) {
                     System.out.print("  ");
                 } else {
-                    System.out.print("  " + c);
+                    System.out.print(" " + c);
                 }
             }
+            counter ++;
             System.out.println();
         }
 
-        System.out.println();
+        System.out.println("---".repeat(this.refStringLen));
 
 
     }
