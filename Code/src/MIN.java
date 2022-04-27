@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MIN {
@@ -6,6 +7,7 @@ public class MIN {
     List<Pages> refString2 = new ArrayList<Pages>();
     ArrayList<Pages> cache = new ArrayList<Pages>();
     ArrayList<Integer> slot_list = new ArrayList<Integer>();
+    ArrayList<Integer> pageCount = new ArrayList<Integer>();
     int hitCount;
     int missCount;
     int pageIndex;
@@ -20,6 +22,7 @@ public class MIN {
         this.refStringLen = this.refString.size();
         this.refString2.addAll(refString);
         this.slotSize = slotSize;
+        this.pageCount = pageCount;
     }
 
     public int getHitCount() {
@@ -61,9 +64,24 @@ public class MIN {
             } else {
                 this.missCount++;
                 if (this.cache.size() > 0 && this.cache.size() == this.slotSize) {
-                    this.refString2.get(pageIndex).setSlotNum(this.cache.get(0).getSlotNum());
-                    this.cache.remove(0);
-                    this.cache.add(this.page);
+
+                    this.pageCount.clear();
+
+                    for (int i = 0; i < this.cache.size(); i++) {
+                        int pageCount = 0;
+                        for (int j = 0; j < this.refString.size(); j++) {
+                            if (this.cache.get(i).getRef_page().equals(this.refString.get(j).getRef_page())) {
+                                pageCount++;
+                            }
+                        }
+                        this.pageCount.add(pageCount);
+                    }
+
+                    int tempIndex = this.minIndex(this.pageCount);
+
+                    this.refString2.get(pageIndex).setSlotNum(this.cache.get(tempIndex).getSlotNum());
+                    this.cache.remove(tempIndex);
+                    this.cache.add(tempIndex, this.page);
                 } else {
                     this.cache.add(this.page);
                 }
@@ -116,7 +134,7 @@ public class MIN {
 
     }
 
-    public String getRetString() {
-        return retString;
+    public static int minIndex(ArrayList<Integer> list) {
+        return list.indexOf(Collections.min(list));
     }
 }
