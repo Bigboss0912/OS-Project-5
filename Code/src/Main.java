@@ -163,8 +163,22 @@ public class Main {
         System.out.printf("\nLRU  : %2s of %2s = %.2f", LRUAlgo.getHitCount(), page_len, (double)LRUAlgo.getHitCount()/page_len);
         System.out.printf("\nMIN  : %2s of %2s = %.2f", MINAlgo.getHitCount(), page_len, (double)MINAlgo.getHitCount()/page_len);
         System.out.printf("\nRAND : %2s of %2s = %.2f", RANDAlgo.getHitCount(), page_len, (double)RANDAlgo.getHitCount()/page_len);
-        System.out.printf("\nBest: " + min_algor );
-        System.out.printf("\nWorst: " + max_algor);
+        System.out.printf("\nBest: " + max_algor);
+        System.out.printf("\nWorst: " + min_algor);
+
+        System.out.println();
+        System.out.println();
+
+        System.out.println("Cache Miss Rates: ");
+        System.out.printf("FIFO : %2s of %2s = %.2f", fifoAlgo.getMissCount(), page_len, (double)fifoAlgo.getMissCount()/page_len);
+        System.out.printf("\nLRU  : %2s of %2s = %.2f", LRUAlgo.getMissCount(), page_len, (double)LRUAlgo.getMissCount()/page_len);
+        System.out.printf("\nMIN  : %2s of %2s = %.2f", MINAlgo.getMissCount(), page_len, (double)MINAlgo.getMissCount()/page_len);
+        System.out.printf("\nRAND : %2s of %2s = %.2f", RANDAlgo.getMissCount(), page_len, (double)RANDAlgo.getMissCount()/page_len);
+        System.out.printf("\nBest: " + max_algor);
+        System.out.printf("\nWorst: " + min_algor);
+
+        System.out.println();
+        System.out.println();
 
     }
 

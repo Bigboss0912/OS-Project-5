@@ -53,7 +53,6 @@ public class RAND {
                 if(p.getRef_page().equals(this.page.getRef_page())) {
                     this.isContained = true;
                     this.refString2.get(pageIndex).setSlotNum(p.getSlotNum());
-                    //this.pageIndex = this.cache.indexOf(p);
                     break;
                 }
 
@@ -82,13 +81,8 @@ public class RAND {
     public void setup(){
         String [][] setup = new String [this.slotSize][this.refStringLen];
 
-//        for (int m = 0; m < this.slotSize; m++) {
-//            setup[m][0] = "FIFO";
-//        }
-
         for (int i = 0; i < this.slotSize; i++) {
             for(int j = 0; j < this.refStringLen+1; j++){
-                // setup[i][j] = "Z";
                 for (Pages p: refString2) {
                     if (p.slotNum == i) {
                         if(p.getPageIndex() == j) {
@@ -121,8 +115,8 @@ public class RAND {
 
     }
 
-    public String getRetString() {
-        return retString;
+    public int getMissCount() {
+        return missCount;
     }
 }
 
