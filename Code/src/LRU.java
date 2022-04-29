@@ -9,7 +9,6 @@ public class LRU {
     int hitCount;
     int missCount;
     int pageIndex;
-    String retString;
     Pages page;
     int slotSize;
     int refStringLen;

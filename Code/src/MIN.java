@@ -11,7 +11,6 @@ public class MIN {
     int hitCount;
     int missCount;
     int pageIndex;
-    String retString;
     Pages page;
     int slotSize;
     int refStringLen;

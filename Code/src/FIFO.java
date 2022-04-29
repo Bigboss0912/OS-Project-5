@@ -9,7 +9,6 @@ public class FIFO {
     int hitCount;
     int missCount;
     int pageIndex;
-    String retString;
     Pages page;
     int slotSize;
     int refStringLen;
