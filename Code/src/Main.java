@@ -116,7 +116,6 @@ public class Main {
 
 
         //RAND Page replacement Algorithm
-        System.out.println("\nRef Str: " + ref_str);
         RAND RANDAlgo = new RAND(pages_list_RAND,slots);
         RANDAlgo.runSchedule();
         RANDAlgo.setup();
